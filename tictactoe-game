@@ -1,0 +1,160 @@
+import pygame
+pygame.init()
+screen=pygame.display.set_mode((600, 600))
+pygame.display.set_caption("Name of window")
+def show_text(msg, x, y, color, size):
+        fontobj= pygame.font.SysFont("freesans", size)
+        msgobj = fontobj.render(msg,False,color)
+        screen.blit(msgobj,(x, y))
+dict={1:" ",2:" ",3:" ",4:" ",5:" ",6:" ",7:" ",8:" ",9:" ", }
+a=False
+while True:
+    pygame.draw.line(screen, (255, 255, 255), (0, 200), (600, 200))
+    pygame.draw.line(screen, (255, 255, 255), (0, 400), (600, 400))
+    pygame.draw.line(screen, (255, 255, 255), (200, 0), (200, 600))
+    pygame.draw.line(screen, (255, 255, 255), (400, 0), (400, 600))
+    for event in pygame.event.get():
+        if event.type==pygame.MOUSEBUTTONDOWN:
+          if a==False:
+               if event.pos[0]>=0 and event.pos[0]<=200 and event.pos[1]>=0 and event.pos[1]<=200 and dict[1]==" ":
+                 dict[1]="O"
+                 a=True
+                 pygame.draw.circle(screen, (255, 255, 255), (event.pos), 75, 3)
+               if event.pos[0]>=200 and event.pos[0]<=400 and event.pos[1]>=0 and event.pos[1]<=200 and dict[2]==" ":
+                 dict[2]="O"
+                 a=True
+                 pygame.draw.circle(screen, (255, 255, 255), (event.pos), 75, 3)
+               if event.pos[0]>=400 and event.pos[0]<=600 and event.pos[1]>=0 and event.pos[1]<=200 and dict[3]==" ":
+                 dict[3]="O"
+                 a=True
+                 pygame.draw.circle(screen, (255, 255, 255), (event.pos), 75, 3)
+               if event.pos[0]>=0 and event.pos[0]<=200 and event.pos[1]>=200 and event.pos[1]<=400 and dict[4]==" ":
+                 dict[4]="O"
+                 a=True
+                 pygame.draw.circle(screen, (255, 255, 255), (event.pos), 75, 3)
+               if event.pos[0]>=200 and event.pos[0]<=400 and event.pos[1]>=200 and event.pos[1]<=400 and dict[5]==" ":
+                 dict[5]="O"
+                 a=True
+                 pygame.draw.circle(screen, (255, 255, 255), (event.pos), 75, 3)
+               if event.pos[0]>=400 and event.pos[0]<=600 and event.pos[1]>=200 and event.pos[1]<=400 and dict[6]==" ":
+                 dict[6]="O"
+                 a=True
+                 pygame.draw.circle(screen, (255, 255, 255), (event.pos), 75, 3)
+               if event.pos[0]>=0 and event.pos[0]<=200 and event.pos[1]>=400 and event.pos[1]<=600 and dict[7]==" ":
+                 dict[7]="O"
+                 a=True
+                 pygame.draw.circle(screen, (255, 255, 255), (event.pos), 75, 3)
+               if event.pos[0]>=200 and event.pos[0]<=400 and event.pos[1]>=400 and event.pos[1]<=600 and dict[8]==" ":
+                 dict[8]="O"
+                 a=True
+                 pygame.draw.circle(screen, (255, 255, 255), (event.pos), 75, 3)
+               if event.pos[0]>=400 and event.pos[0]<=600 and event.pos[1]>=400 and event.pos[1]<=600 and dict[9]==" ":
+                 dict[9]="O"
+                 a=True
+                 pygame.draw.circle(screen, (255, 255, 255), (event.pos), 75, 3)
+          elif a==True:
+               if event.pos[0]>=0 and event.pos[0]<=200 and event.pos[1]>=0 and event.pos[1]<=200 and dict[1]==" ":
+                 dict[1]="X"
+                 a=False
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]-50, event.pos[1]-50), (event.pos[0]+50, event.pos[1]+50), 5)
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]+50, event.pos[1]-50), (event.pos[0]-50, event.pos[1]+50), 5)
+               if event.pos[0]>=200 and event.pos[0]<=400 and event.pos[1]>=0 and event.pos[1]<=200 and dict[2]==" ":
+                 dict[2]="X"
+                 a=False
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]-50, event.pos[1]-50), (event.pos[0]+50, event.pos[1]+50), 5)
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]+50, event.pos[1]-50), (event.pos[0]-50, event.pos[1]+50), 5)
+               if event.pos[0]>=400 and event.pos[0]<=600 and event.pos[1]>=0 and event.pos[1]<=200 and dict[3]==" ":
+                 dict[3]="X"
+                 a=False
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]-50, event.pos[1]-50), (event.pos[0]+50, event.pos[1]+50), 5)
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]+50, event.pos[1]-50), (event.pos[0]-50, event.pos[1]+50), 5)
+               if event.pos[0]>=0 and event.pos[0]<=200 and event.pos[1]>=200 and event.pos[1]<=400 and dict[4]==" ":
+                 dict[4]="X"
+                 a=False
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]-50, event.pos[1]-50), (event.pos[0]+50, event.pos[1]+50), 5)
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]+50, event.pos[1]-50), (event.pos[0]-50, event.pos[1]+50), 5)
+               if event.pos[0]>=200 and event.pos[0]<=400 and event.pos[1]>=200 and event.pos[1]<=400 and dict[5]==" ":
+                 dict[5]="X"
+                 a=False
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]-50, event.pos[1]-50), (event.pos[0]+50, event.pos[1]+50), 5)
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]+50, event.pos[1]-50), (event.pos[0]-50, event.pos[1]+50), 5)
+               if event.pos[0]>=400 and event.pos[0]<=600 and event.pos[1]>=200 and event.pos[1]<=400 and dict[6]==" ":
+                 dict[6]="X"
+                 a=False
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]-50, event.pos[1]-50), (event.pos[0]+50, event.pos[1]+50), 5)
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]+50, event.pos[1]-50), (event.pos[0]-50, event.pos[1]+50), 5)
+               if event.pos[0]>=0 and event.pos[0]<=200 and event.pos[1]>=400 and event.pos[1]<=600 and dict[7]==" ":
+                 dict[7]="X"
+                 a=False
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]-50, event.pos[1]-50), (event.pos[0]+50, event.pos[1]+50), 5)
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]+50, event.pos[1]-50), (event.pos[0]-50, event.pos[1]+50), 5)
+               if event.pos[0]>=200 and event.pos[0]<=400 and event.pos[1]>=400 and event.pos[1]<=600 and dict[8]==" ":
+                 dict[8]="X"
+                 a=False
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]-50, event.pos[1]-50), (event.pos[0]+50, event.pos[1]+50), 5)
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]+50, event.pos[1]-50), (event.pos[0]-50, event.pos[1]+50), 5)
+               if event.pos[0]>=400 and event.pos[0]<=600 and event.pos[1]>=400 and event.pos[1]<=600 and dict[9]==" ":
+                 dict[9]="X"
+                 a=False
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]-50, event.pos[1]-50), (event.pos[0]+50, event.pos[1]+50), 5)
+                 pygame.draw.line(screen, (255, 255, 255), (event.pos[0]+50, event.pos[1]-50), (event.pos[0]-50, event.pos[1]+50), 5)
+          if dict[1]=="X" and dict[2]=="X" and dict[3]=="X":
+               screen.fill((0, 0, 0))
+               show_text("X WINS", 220, 250, (255, 255, 255), 50)
+          if dict[1]=="O" and dict[2]=="O" and dict[3]=="O":
+               screen.fill((0, 0, 0))
+               show_text("O WINS", 220, 250, (255, 255, 255), 50)
+          if dict[4]=="X" and dict[5]=="X" and dict[6]=="X":
+               screen.fill((0, 0, 0))
+               show_text("X WINS", 220, 250, (255, 255, 255), 50)
+          if dict[4]=="O" and dict[5]=="O" and dict[6]=="O":
+               screen.fill((0, 0, 0))
+               show_text("O WINS", 220, 250, (255, 255, 255), 50)
+          if dict[7]=="X" and dict[8]=="X" and dict[9]=="X":
+               screen.fill((0, 0, 0))
+               show_text("X WINS", 220, 250, (255, 255, 255), 50)
+          if dict[7]=="O" and dict[8]=="O" and dict[9]=="O":
+               screen.fill((0, 0, 0))
+               show_text("O WINS", 220, 250, (255, 255, 255), 50)
+          if dict[1]=="X" and dict[4]=="X" and dict[7]=="X":
+               screen.fill((0, 0, 0))
+               show_text("X WINS", 220, 250, (255, 255, 255), 50)
+          if dict[2]=="X" and dict[5]=="X" and dict[8]=="X":
+               screen.fill((0, 0, 0))
+               show_text("X WINS", 220, 250, (255, 255, 255), 50)
+          if dict[3]=="X" and dict[6]=="X" and dict[9]=="X":
+               screen.fill((0, 0, 0))
+               show_text("X WINS", 220, 250, (255, 255, 255), 50)
+          if dict[1]=="O" and dict[4]=="O" and dict[7]=="O":
+               screen.fill((0, 0, 0))
+               show_text("O WINS", 220, 250, (255, 255, 255), 50)
+          if dict[2]=="O" and dict[5]=="O" and dict[8]=="O":
+               screen.fill((0, 0, 0))
+               show_text("O WINS", 220, 250, (255, 255, 255), 50)
+          if dict[3]=="O" and dict[6]=="O" and dict[9]=="O":
+               screen.fill((0, 0, 0))
+               show_text("O WINS", 220, 250, (255, 255, 255), 50)
+          if dict[1]=="O" and dict[5]=="O" and dict[9]=="O":
+               screen.fill((0, 0, 0))
+               show_text("O WINS", 220, 250, (255, 255, 255), 50)
+          if dict[3]=="O" and dict[5]=="O" and dict[7]=="O":
+               screen.fill((0, 0, 0))
+               show_text("O WINS", 220, 250, (255, 255, 255), 50)
+          if dict[1]=="X" and dict[5]=="X" and dict[9]=="X":
+               screen.fill((0, 0, 0))
+               show_text("X WINS", 220, 250, (255, 255, 255), 50)
+          if dict[3]=="X" and dict[5]=="X" and dict[7]=="X":
+               screen.fill((0, 0, 0))
+               show_text("X WINS", 220, 250, (255, 255, 255), 50)
+
+     
+
+    
+    
+            
+                
+        if event.type==pygame.QUIT:
+            print("bye")
+            pygame.quit()
+            exit()
+    pygame.display.update()
