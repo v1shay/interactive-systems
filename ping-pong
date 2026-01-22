@@ -1,0 +1,167 @@
+import pygame
+import time
+pygame.init()
+screen=pygame.display.set_mode((600, 600))
+pygame.display.set_caption("Name of window")
+def show_text(msg, x, y, color, size):
+        fontobj= pygame.font.SysFont("freesans", size)
+        msgobj = fontobj.render(msg,False,color)
+        screen.blit(msgobj,(x, y))
+x=250
+score1=0
+score2=0
+f=275
+k=300
+y=450
+a=250
+b=150
+h=False
+move=False
+up=False
+down=False
+right=False
+left=False
+u=False
+d=False
+r=False
+l=False
+redball=False
+def show_text(msg, x, y, color, size):
+        fontobj= pygame.font.SysFont("freesans", size)
+        msgobj = fontobj.render(msg,False,color)
+        screen.blit(msgobj,(x, y))
+def show_text(msg, x, y, color, size):
+        fontobj= pygame.font.SysFont("freesans", size)
+        msgobj = fontobj.render(msg,False,color)
+        screen.blit(msgobj,(x, y))
+
+
+def pong():
+    global f, k, x, y, q, a, b, h, move, up, down, right, left, u, d, r, l, redball, score1, score2
+    while True:
+        screen.fill((0, 0, 0))
+        pygame.draw.line(screen, (255, 255, 0), (0, 300), (600, 300), 10)
+        ball=pygame.draw.circle(screen, (255, 255, 255), (k, f), 20)
+        red=pygame.draw.rect(screen, (255, 0, 0), (x, y, 50, 50))
+        blue=pygame.draw.rect(screen, (0, 0, 255), (a, b, 50, 50))
+        if red.colliderect(ball):
+            move=False
+        if blue.colliderect(ball):
+            move=True
+        show_text("SCORE:" + str(score1) + "-" + str(score2), 10, 10, (255, 255, 255), 32)
+
+        
+
+        if f<=0:
+            h=True
+            score2=score2+1
+            f=275
+            k=300
+            pygame.draw.circle(screen, (255, 255, 255), (k, f), 20)
+            pygame.display.update()
+            
+        if h==True:
+            f=f+0.5
+        if k>=600:
+            h=False
+            score1=score1+1
+            k=275
+            f=300
+            pygame.draw.circle(screen, (255, 255, 255), (k, f), 20)
+            pygame.display.update()
+        
+        if h==False:
+            f=f-0.5
+        if move==True:
+            k=k+0.5
+        if k>=600:
+            move=False
+        if move==False:
+            k=k-0.5
+            
+
+
+        if x<=0:
+            x=0
+        if x>=600:
+            x=600
+        if a<=0:
+            a=0
+        if a>=600:
+            a=600
+
+        for event in pygame.event.get():
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_w:
+                    u=True
+                if event.key==pygame.K_a:
+                    l=True
+                if event.key==pygame.K_s:
+                    d=True
+                if event.key==pygame.K_d:
+                    r=True
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_RIGHT:
+                    right=True
+                if event.key==pygame.K_LEFT:
+                    left=True
+                if event.key==pygame.K_DOWN:
+                    down=True
+                if event.key==pygame.K_UP:
+                    up=True
+            if event.type==pygame.KEYUP:
+                    if event.key==pygame.K_LEFT:
+                        left=False
+                    if event.key==pygame.K_RIGHT:
+                        right=False
+                    if event.key==pygame.K_UP:
+                        up=False
+                    if event.key==pygame.K_DOWN:
+                        down=False
+                    if event.key==pygame.K_w:
+                        u=False
+                    if event.key==pygame.K_a:
+                        l=False
+                    if event.key==pygame.K_s:
+                        d=False
+                    if event.key==pygame.K_d:
+                        r=False
+                    
+                    
+                    
+            if event.type==pygame.QUIT:
+                print("bye")
+                pygame.quit()
+                exit()
+        if up==True:
+            y=y+1
+        if down==True:
+            y=y-1
+        if left==True:
+            x=x-1
+        if right==True:
+            x=x+1
+        if u==True:
+            b=b-1
+        if d==True:
+            b=b+1
+        if l==True:
+            a=a-1
+        if r==True:
+            a=a+1
+        
+    
+        pygame.display.update()
+while True:
+    start=pygame.draw.rect(screen, (200, 200, 200), (300, 10, 150, 50))
+    show_text("START", 320, 20, (255, 255, 255), 32)
+    
+    for event in pygame.event.get():
+        if event.type==pygame.MOUSEBUTTONDOWN:
+            if start.collidepoint(event.pos):
+                pong()
+        if event.type==pygame.QUIT:
+            print("bye")
+            pygame.quit()
+            exit()
+    pygame.display.update()
