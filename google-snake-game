@@ -1,0 +1,71 @@
+import pygame
+import time
+import random
+pygame.init()
+screen=pygame.display.set_mode((600, 600))
+pygame.display.set_caption("Name of window")
+def show_text(msg, x, y, color, size):
+        fontobj= pygame.font.SysFont("freesans", size)
+        msgobj = fontobj.render(msg,False,color)
+        screen.blit(msgobj,(x, y))
+
+snakemove="STILL"
+foodx=(random.randint(0,600) // 10 ) * 10
+foody=(random.randint(0,600) // 10 ) * 10
+snakex=(random.randint(0,600) // 10 ) * 10
+snakey=(random.randint(0,600) // 10 ) * 10
+score=0
+snakelist=[(snakex, snakey), ]
+clock=pygame.time.Clock()
+while True:
+    clock.tick(30)
+    screen.fill((0, 180, 0))
+    snake=pygame.draw.rect(screen, (0, 0, 255), (snakex, snakey, 25, 25))
+    food=pygame.draw.circle(screen, (255, 0, 0), (foodx, foody), 15)
+    for a in snakelist:
+        pygame.draw.rect(screen, (0, 0, 255), (a[0], a[1], 25, 25))
+    if snakex<=0:
+         snakex=600
+    elif snakex>=600:
+         snakex=0
+    elif snakey<=0:
+         snakey=600
+    elif snakey>=600:
+         snakey=0
+    if snakemove=="RIGHT":
+         snakex=snakex+10
+    if snakemove=="LEFT":
+         snakex=snakex-10
+    if snakemove=="UP":
+         snakey=snakey-10
+    if snakemove=="DOWN":
+         snakey=snakey+10
+    snakelist.insert(0, (snakex, snakey))
+    if (snakex, snakey) in snakelist[1:]:
+         show_text("GAME OVER, your score was " + str(score), 300, 300, (0,0,0), 20)
+         pygame.quit()
+         exit()
+    if snake.colliderect(food):
+         foodx=(random.randint(0,600) // 10 ) * 10
+         foody=(random.randint(0,600) // 10 ) * 10
+         score=score+1
+         print(snakelist)
+    else:
+         snakelist.pop()
+    show_text(str(score), 550, 10, (0,0,0), 40)
+    for event in pygame.event.get():
+        if event.type==pygame.KEYDOWN:
+            if event.key==pygame.K_UP and snakemove!="DOWN":
+                snakemove="UP"
+            if event.key==pygame.K_DOWN and snakemove!="UP":
+                 snakemove="DOWN"
+            if event.key==pygame.K_RIGHT and snakemove!="LEFT":
+                 snakemove="RIGHT"
+            if event.key==pygame.K_LEFT and snakemove!="RIGHT":
+                 snakemove="LEFT"
+                  
+        if event.type==pygame.QUIT:
+            print("bye")
+            pygame.quit()
+            exit()
+    pygame.display.update()
