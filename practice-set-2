@@ -1,0 +1,58 @@
+import pygame
+import random
+pygame.init()
+screen=pygame.display.set_mode((600, 600))
+pygame.display.set_caption("Name of window")
+def show_text(msg, x, y, color, size):
+        fontobj= pygame.font.SysFont("freesans", size)
+        msgobj = fontobj.render(msg,False,color)
+        screen.blit(msgobj,(x, y))
+right=False
+left=False
+a=[]
+g=0
+drop=False
+count=0
+x=0
+for i in range(0, 10):
+    image=pygame.image.load("/Users/vishay/Downloads/png 2/Run__00"+str(i)+".png")
+    a.append(image)
+while True:
+    screen.fill((0,0,0))
+    b=random.randint(0, 600)
+    c=random.randint(0, 50)
+    if drop==False:
+        pygame.draw.rect(screen, (200, 200, 200), (b, g, c, c))
+        g=g+1
+        drop==True
+    if g==400:
+         drop==False
+    if right==True:
+         screen.blit(a[count], (x, 600))
+         count += 1
+         if count==len(a):
+            count=0
+         x=x+10
+    if left==True:
+         screen.blit(a[count], (x, 600))
+         count += 1
+         if count==len(a):
+            count=0
+         x=x-10
+    
+    for event in pygame.event.get():
+        if event.type==pygame.KEYDOWN:
+             if event.key==pygame.K_LEFT:
+                  left=True
+             if event.key==pygame.K_RIGHT:
+                  right=True
+        if event.type==pygame.KEYUP:
+             if event.key==pygame.K_LEFT:
+                  left=False
+             if event.key==pygame.K_RIGHT:
+                  right=False
+        if event.type==pygame.QUIT:
+            print("bye")
+            pygame.quit()
+            exit()
+    pygame.display.update()
