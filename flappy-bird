@@ -1,0 +1,47 @@
+import pygame
+import time
+import random
+pygame.init()
+screen=pygame.display.set_mode((1000, 600))
+pygame.display.set_caption("Name of window")
+def show_text(msg, x, y, color, size):
+        fontobj= pygame.font.SysFont("freesans", size)
+        msgobj = fontobj.render(msg,False,color)
+        screen.blit(msgobj,(x, y)) 
+score=0
+
+flx=200
+fly=250
+pipex=1000
+pipey=0
+h=random.randint(1, 500)
+pipeq=h+150
+while True:
+    screen.fill((0, 0, 0))
+    bird=pygame.draw.circle(screen, (255, 255, 0), (flx, fly), 23)
+    show_text(str(score), 50, 50, (255, 255, 255), 20)
+    fly=fly+0.2
+    pipex=pipex-0.5
+    pipe1=pygame.draw.rect(screen, (50, 50, 50), (pipex, pipey, 100, h))
+    pipe2=pygame.draw.rect(screen, (50, 50, 50), (pipex, pipeq, 100, 600-pipeq))
+    if pipe1.colliderect(bird) or pipe2.colliderect(bird):
+         show_text("GAME OVER, you scored: "+ str(score), 100, 200, (255, 0, 0), 50)
+         pygame.display.update()
+         time.sleep(2)
+         pipex=1000
+         score=0
+         
+    if pipex<=0:
+         score=score+1
+         pipex=1000
+         h=random.randint(1, 500)
+         pipeq=h+150     
+    for event in pygame.event.get():
+        if event.type==pygame.KEYDOWN:
+             if event.key==pygame.K_SPACE: 
+                  fly=fly-70
+        if event.type==pygame.QUIT:
+            print("bye")
+            pygame.quit()
+            exit()
+    pygame.display.update()
