@@ -1,0 +1,100 @@
+import pygame
+import random
+pygame.init()
+screen=pygame.display.set_mode((600, 600))
+pygame.display.set_caption("Name of window")
+def show_text(msg, x, y, color, size):
+        fontobj= pygame.font.SysFont("freesans", size)
+        msgobj = fontobj.render(msg,False,color)
+        screen.blit(msgobj,(x, y))
+x=250
+y=250
+z=400
+idle=[]
+run=[]
+number=1
+count=1
+q=400
+drag=False
+a=random.randint(0, 600)
+for o in range(1,9):
+     i=pygame.image.load("/Users/vishay/Downloads/png/Run ("+str(o)+").png")
+     run.append(i)
+for dragon in range(1, 11):
+    t=pygame.image.load("/Users/vishay/Downloads/png/Idle ("+str(dragon)+").png")
+    idle.append(t)
+b=random.randint(0, 600)
+running=False
+bounce=True
+right=False
+left=False
+up=False
+down=False
+while True:
+    screen.fill((0,0,0))
+    f=pygame.draw.rect(screen, (0, 250, 0), (a, b, 50, 50), 200)
+    pygame.draw.circle(screen, (250, 250, 250), (x, y), 20)
+    pygame.draw.circle(screen, (250, 0, 0), (z, q), 20)
+    if running==True:
+        screen.blit(run[number], (100, 100))
+        number +=1
+        if number==len(run):
+            number=1
+    else:
+        screen.blit(idle[count], (100, 100))
+        count += 1
+        if count==len(idle):
+            count=1
+    if drag==True:
+         a=event.pos[0]
+         b=event.pos[1]
+    if bounce==True:
+         q=q-1
+    if q<=0:
+         bounce=False
+    if bounce==False:
+         q=q+1
+    if q>=600:
+         bounce=True
+    if right==True:
+        x=x+1
+    if left==True:
+        x=x-1
+    if up==True:
+        y=y-1
+    if down==True:
+        y=y+1
+    for event in pygame.event.get(): 
+        if event.type==pygame.MOUSEBUTTONDOWN:
+             if event.button==1 and f.collidepoint(event.pos):
+                  drag=True
+        if event.type==pygame.MOUSEBUTTONUP:
+             if event.button==1 and f.collidepoint(event.pos):
+                  drag=False
+                
+        
+        if event.type==pygame.KEYDOWN:
+            if event.key==pygame.K_v:
+                  running=True
+            if event.key==pygame.K_w:
+                  up=True
+            if event.key==pygame.K_a:
+                  left=True
+            if event.key==pygame.K_s:
+                  down=True
+            if event.key==pygame.K_d:
+                  right=True
+        if event.type==pygame.KEYUP:
+            if event.key==pygame.K_w:
+                  up=False
+            if event.key==pygame.K_a:
+                  left=False
+            if event.key==pygame.K_s:
+                  down=False
+            if event.key==pygame.K_d:
+                  right=False
+        if event.type==pygame.QUIT:
+            print("bye")
+            pygame.quit()
+            exit()
+    pygame.display.update()
